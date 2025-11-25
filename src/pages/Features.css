@@ -1,0 +1,9 @@
+.feature-controls { display: flex; gap: 10px; margin: 20px 0; }
+.feature-controls input { padding: 10px; border: 2px solid #ddd; border-radius: 8px; flex: 1; }
+.feature-controls button { padding: 10px 20px; background: #3B82F6; color: white; border: none; border-radius: 8px; cursor: pointer; }
+.features-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+.feature-card { background: white; padding: 15px; border-radius: 8px; }
+.add-feature { background: white; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; gap: 10px; }
+.add-feature input { padding: 10px; border: 2px solid #ddd; border-radius: 8px; }
+.add-feature button { padding: 10px; background: #3B82F6; color: white; border: none; border-radius: 8px; cursor: pointer; }
+
