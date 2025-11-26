@@ -14,6 +14,24 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Global auth error handling: if token is invalid/expired, send user back to sign in
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const status = error?.response?.status;
+    if (status === 401 || status === 403) {
+      // Clear any stored auth state
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user_id');
+      // Avoid infinite redirect loop if we're already on the sign-in page
+      if (!window.location.pathname.startsWith('/signin')) {
+        window.location.href = '/signin';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const platformAPI = {
   getSchools: () => api.get('/api/platform/schools').then(r => r.data),
   getSchoolDetails: (schoolId) => api.get(`/api/platform/schools/${schoolId}`).then(r => r.data),

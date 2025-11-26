@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { platformAPI } from '../lib/api';
 import './Dashboard.css';
 
@@ -7,6 +7,13 @@ export default function Dashboard() {
   const [dashboard, setDashboard] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_id');
+    navigate('/signin');
+  };
 
   useEffect(() => {
     platformAPI.getDashboard()
@@ -42,7 +49,10 @@ export default function Dashboard() {
   return (
     <div className="dashboard-page">
       <div className="dashboard-container">
-        <h1>Platform Admin Dashboard</h1>
+        <div className="dashboard-header">
+          <h1>Platform Admin Dashboard</h1>
+          <button className="logout-button" onClick={handleLogout}>Logout</button>
+        </div>
         <nav>
           <Link to="/schools">Manage Schools</Link>
           <Link to="/payments">Payments</Link>

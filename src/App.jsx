@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Schools from './pages/Schools';
 import Payments from './pages/Payments';
 import Features from './pages/Features';
+import ResetPassword from './pages/ResetPassword';
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/auth/reset-password" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/schools" element={<Schools />} />
         <Route path="/payments" element={<Payments />} />
